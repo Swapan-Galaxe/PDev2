@@ -1,0 +1,114 @@
+<aura:component controller="SK_PromisePatternDemoController">
+    <aura:attribute name="ltngAccList" type="List"/>
+    <aura:attribute name="ltngTaskList" type="List"/>
+    <aura:attribute name="ltngClickedAction" type="String" default=""/>
+    <aura:attribute name="ltngAccInfoString" type="String" default=""/>
+    <aura:attribute name="ltngTaskInfoString" type="String" default=""/>
+    
+    <lightning:button label="Fetch 2 records using callback pattern" onclick="{!c.findDataUsingNormalCall}"/>
+    <lightning:button label="Fetch 3 records using promise pattern" onclick="{!c.findDataUsingPromise}"/>
+    <br/>
+    
+    <aura:if isTrue="{!v.ltngClickedAction=='NormalCall'}">
+        {!v.ltngAccInfoString}
+        <aura:if isTrue="{!!empty(v.ltngAccList)}">
+            <div style="background-color:#E6E6FA;border-style: solid;margin:5px;">
+                <table class="slds-table slds-table_fixed-layout slds-table_bordered slds-table_cell-buffer">  
+                    <thead> 
+                        <tr class="slds-text-title--caps"> 
+                            <th scope="col">Name</th> 
+                            <th scope="col">Type</th> 
+                            <th scope="col">Industry</th>
+                        </tr> 
+                    </thead> 
+                    <tbody> 
+                        <aura:iteration items="{!v.ltngAccList}" var="item"> 
+                            <tr class="slds-hint-parent"> 
+                                <td scope="row"> {!item.Name}</td> 
+                                <td > {!item.Type}</td> 
+                                <td > {!item.Industry}</td>
+                            </tr> 
+                        </aura:iteration> 
+                    </tbody> 
+                </table>
+            </div>
+        </aura:if>
+        <br/>
+        {!v.ltngTaskInfoString}
+        <aura:if isTrue="{!!empty(v.ltngTaskList)}">
+            <div style="background-color:#E6E6FA;border-style: solid;margin:5px;">
+                <table class="slds-table slds-table_fixed-layout slds-table_bordered slds-table_cell-buffer">  
+                    <thead> 
+                        <tr class="slds-text-title--caps"> 
+                            <th scope="col">Subject</th> 
+                            <th scope="col">Status</th> 
+                            <th scope="col">Description</th>
+                        </tr> 
+                    </thead> 
+                    <tbody> 
+                        <aura:iteration items="{!v.ltngTaskList}" var="item"> 
+                            <tr class="slds-hint-parent"> 
+                                <td scope="row"> {!item.Subject}</td> 
+                                <td > {!item.Status}</td> 
+                                <td > {!item.Description}</td>
+                            </tr> 
+                        </aura:iteration> 
+                    </tbody> 
+                </table>
+            </div>
+        </aura:if>
+        
+    </aura:if>
+    
+    
+    <br/>
+    <aura:if isTrue="{!v.ltngClickedAction=='PromiseCall'}">
+        {!v.ltngAccInfoString}
+    	<aura:if isTrue="{!!empty(v.ltngAccList)}">
+            <div style="background-color:#E6E6FA;border-style: solid;margin:5px;">
+                <table class="slds-table slds-table_fixed-layout slds-table_bordered slds-table_cell-buffer">  
+                    <thead> 
+                        <tr class="slds-text-title--caps"> 
+                            <th scope="col">Name</th> 
+                            <th scope="col">Type</th> 
+                            <th scope="col">Industry</th>
+                        </tr> 
+                    </thead> 
+                    <tbody> 
+                        <aura:iteration items="{!v.ltngAccList}" var="item"> 
+                            <tr class="slds-hint-parent"> 
+                                <td scope="row"> {!item.Name}</td> 
+                                <td > {!item.Type}</td> 
+                                <td > {!item.Industry}</td>
+                            </tr> 
+                        </aura:iteration> 
+                    </tbody> 
+                </table>
+            </div>
+        </aura:if>
+        <br/>
+        {!v.ltngTaskInfoString}
+        <aura:if isTrue="{!!empty(v.ltngTaskList)}">
+            <div style="background-color:#E6E6FA;border-style: solid;margin:5px;">
+                <table class="slds-table slds-table_fixed-layout slds-table_bordered slds-table_cell-buffer">  
+                    <thead> 
+                        <tr class="slds-text-title--caps"> 
+                            <th scope="col">Subject</th> 
+                            <th scope="col">Status</th> 
+                            <th scope="col">Description</th>
+                        </tr> 
+                    </thead> 
+                    <tbody> 
+                        <aura:iteration items="{!v.ltngTaskList}" var="item"> 
+                            <tr class="slds-hint-parent"> 
+                                <td scope="row"> {!item.Subject}</td> 
+                                <td > {!item.Status}</td> 
+                                <td > {!item.Description}</td>
+                            </tr> 
+                        </aura:iteration> 
+                    </tbody> 
+                </table>
+            </div>
+        </aura:if>
+    </aura:if>
+</aura:component>

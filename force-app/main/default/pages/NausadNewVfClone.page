@@ -1,0 +1,81 @@
+<apex:page standardController="Account">
+  <!-- Begin Default Content REMOVE THIS -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+
+   
+  <script type="text/javascript">
+   
+     
+  j$ = jQuery.noConflict();
+ j$(document).ready(function() {
+
+
+   
+    
+});
+  function updateMe(data) {
+ 
+         parent.location.href='https://ap4.salesforce.com/0016F00001yeyuG';
+    }
+ 
+  
+ 
+  function aa()
+  {
+   
+   window.open("https://ap4.salesforce.com/apex/Nausad2ndVF?whoID=123&Pname=AI&callType=Phone", "PopupWindow", "width=500,height=600,resizable=no");
+  
+  }
+  </script>
+  <apex:form >
+  <apex:pageBlock > 
+  <apex:pageBlockSection title="Reminder" collapsible="false">
+ <apex:inputCheckbox Id="chkPassport"  />
+  
+ <apex:inputText Id="txtPassportNumber" disabled="disabled"/>
+ </apex:pageBlockSection>
+ </apex:pageBlock>
+  <apex:commandButton onclick="aa()" value="Show Alert" id="theButton"/>
+  <script type="text/javascript">
+    j$(function () {
+        j$("#chkPassport").click(function () {
+            if (j$(this).is(":checked")) {
+                j$("#txtPassportNumber").removeAttr("disabled");
+                j$("#txtPassportNumber").focus();
+            } else {
+                j$("#txtPassportNumber").attr("disabled", "disabled");
+            }
+        });
+    });
+</script>
+ 
+</apex:form>
+  <!-- End Default Content REMOVE THIS 
+   <apex:page standardController="Account">
+  <apex:form>
+    <apex:selectcheckboxes layout="pagedirection">
+       
+        <apex:selectOption itemValue="Other" itemLabel="Other"/>
+    </apex:selectcheckboxes>
+    <apex:inputText styleClass="other"/>
+</apex:form>
+
+<script src="https://code.jquery.com/jquery-1.11.1.min.js"/>
+<script>
+var j$ = jQuery.noConflict();
+j$(document).ready(function() {
+    var field = j$('input.other');
+    field.hide();
+    j$('input:checkbox[value="Other"]').change(function() {
+        if (j$(this).is(':checked')) {
+            field.show();
+        } else {
+            field.hide();
+        }
+    });
+});
+</script>
+</apex:page>-->
+ 
+
+</apex:page>

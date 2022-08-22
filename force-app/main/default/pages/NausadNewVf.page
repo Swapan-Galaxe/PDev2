@@ -1,0 +1,94 @@
+<apex:page standardController="Account" extensions="UserController,SelectOptionController">
+  <!-- Begin Default Content REMOVE THIS -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+
+   
+  <script type="text/javascript">
+   
+     
+  j$ = jQuery.noConflict();
+ function checked(a) {
+   if (j$(a).is(":checked")) {
+   j$('[id$=shp]').prop('checked',true); 
+               alert("chedked");
+            } else {
+                alert("cUnhedked");
+            }
+        
+    }
+  function updateMe(data) {
+ 
+         parent.location.href='https://ap4.salesforce.com/0016F00001yeyuG';
+    }
+ 
+  
+ 
+  function aa()
+  {
+   
+   window.open("https://ap4.salesforce.com/apex/Nausad2ndVF?whoID=123&Pname=AI&callType=Phone", "PopupWindow", "width=500,height=600,resizable=no");
+  
+  }
+  </script>
+  <apex:form >
+  <apex:pageBlock > 
+  <apex:pageBlockSection title="Reminder" collapsible="false">
+ <apex:inputCheckbox onclick="window.checked(this)" id="shp"/>
+   <apex:selectList size="1" value="{!selectedCountry}">
+
+          <apex:selectOptions value="{!items}"></apex:selectOptions>
+
+      </apex:selectList>
+
+        <apex:selectCheckboxes value="{!countries}">
+            <apex:selectOptions value="{!items}"/>
+        </apex:selectCheckboxes><br/>
+        <apex:commandButton value="Test" action="{!test}" rerender="out" status="status"/>
+    
+    <apex:outputPanel id="out">
+        <apex:actionstatus id="status" startText="testing...">
+            <apex:facet name="stop">
+                <apex:outputPanel >
+                    <p>You have selected:</p>
+                    <apex:dataList value="{!countries}" var="c">{!c}</apex:dataList>
+                </apex:outputPanel>
+            </apex:facet>
+        </apex:actionstatus>
+    </apex:outputPanel>
+        
+
+ </apex:pageBlockSection>
+ </apex:pageBlock>
+  <apex:commandButton onclick="aa()" value="Show Alert" id="theButton"/>
+  <apex:commandbutton value="Show Values" action="{!show}"/>
+   
+   <apex:pageBlock >    
+    <apex:outputLabel > Countries : </apex:outputLabel>
+    <apex:selectList id="UserController" value="{!string}" size="1">
+      <apex:selectOptions value="{!countrieLst }"/>
+    </apex:selectList> <br/>
+    
+    <apex:outputLabel > Gender : </apex:outputLabel>
+    <apex:selectRadio value="{!selectedGender}"> 
+     <apex:selectOptions value="{!genderLst}"/>
+    </apex:selectRadio>  
+    <apex:selectList id="chooseColor" value="{!string}" size="1">
+            <apex:selectOption itemValue="red" itemLabel="Red"/>
+            <apex:selectOption itemValue="Canada" itemLabel="Canada"/>
+            <apex:selectOption itemValue="blue" itemLabel="Blue"/>
+        </apex:selectList>
+     <apex:outputLabel > Hobbies :</apex:outputLabel>
+    <apex:selectList size="1" value="{!selectedHobby}">
+     <apex:selectOption itemLabel="--None--" itemvalue=""></apex:selectOption>
+     <apex:selectOption itemLabel="Swimming" itemvalue="Swimming"></apex:selectOption>
+     <apex:selectOption itemLabel="Reading" itemvalue="Reading"></apex:selectOption>
+     <apex:selectOption itemLabel="Cricket" itemvalue="Cricket"></apex:selectOption>
+    </apex:selectList>     
+    </apex:pageBlock> 
+   
+   <apex:pageBlock title="selected values">
+    <apex:outputText value="{!selectedValues}" style="color:red"/>   
+   </apex:pageBlock>
+</apex:form>
+  <!-- End Default Content REMOVE THIS -->
+</apex:page>

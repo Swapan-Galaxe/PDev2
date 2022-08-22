@@ -1,0 +1,10 @@
+<aura:component  implements="lightning:isUrlAddressable,force:appHostable" access="global">
+    <aura:attribute name="urlParam" type="string"/>
+    <div class="slds-card">
+        If you implements "lightning:isUrlAddressable" interface, then by 
+        using v.pageReference,you can get URL params.
+    	<div class="slds-box">  
+        	Account name from URL parameter: <b>{!v.pageReference.state.accname}</b>
+        </div>
+    </div> 
+</aura:component>

@@ -1,0 +1,21 @@
+<apex:page >
+  <!-- Begin Default Content REMOVE THIS -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+
+   
+  <apex:form >
+  <script>
+   
+  j$ = jQuery.noConflict();
+   j$(document).ready(function() {
+    
+    window.open("https://c.ap4.visual.force.com/apex/Nausad2ndVF","_blank", "toolbar=yes,scrollbars=yes,resizable=yes,top=500,left=500,width=400,height=400");
+ window.close();
+ });
+    
+ </script>
+  
+</apex:form>
+ 
+  <!-- End Default Content REMOVE THIS -->
+</apex:page>

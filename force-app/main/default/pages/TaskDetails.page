@@ -1,0 +1,22 @@
+<apex:page Controller="NewController">
+ <apex:form id="form">
+  
+     <apex:pageBlock title="Activity History">
+      <apex:pageBlockTable value="{!accounts}" var="account">       
+        <apex:column headerValue="Action">
+              <a href="https://ap4.salesforce.com/00T/e?title=Call&who_id={!account.Id}&followup=1&tsk5=Call&retURL=%2F{!account.Id}" Target="_blank">Edit</a>&nbsp;|&nbsp;
+              <a href="javascript:if (window.confirm('Are you sure?')) DeleteAccount('{!account.Id}');">Del</a>
+         </apex:column>
+         <apex:column headerValue="Name">
+              <apex:outputLink value="{!account.Name}">{!account.Name}</apex:outputLink>
+         </apex:column>        
+         <apex:column value="{!account.Phone}" headerValue="Phone"/>
+         <apex:column value="{!account.Industry}" headerValue="Industry"/>
+         <apex:column value="{!account.Website}" headerValue="Website"/>
+      </apex:pageBlockTable>
+   </apex:pageBlock>
+    <apex:actionFunction action="{!DeleteAccount}" name="DeleteAccount" reRender="form" >
+    <apex:param name="accountid" value="" assignTo="{!SelectedAccountId}"/>
+    </apex:actionFunction>
+   </apex:form>
+ </apex:page>

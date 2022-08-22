@@ -1,0 +1,13 @@
+<apex:page controller="BookExpense">
+ <apex:form >
+  <apex:pageBlock title="All Expenses">
+   <apex:pageBlockTable value="{!allConvertedExpenses}" var="eachConvertedExpenses">
+    <apex:column headerValue="Book Name" value="{!eachConvertedExpenses.expenseName}" />
+    <apex:column headerValue="Expense in Dollar" value="{!eachConvertedExpenses.expenseInDollar}"/>
+    <apex:column headerValue="Expense in Inr" value="{!eachConvertedExpenses.expenseInInr}"/>
+    <apex:column headerValue="Expense in Euro" value="{!eachConvertedExpenses.expenseInEuro}"/>
+    <apex:column headerValue="Expense in Chf"  value="{!eachConvertedExpenses.expenseInChf}"/>
+   </apex:pageBlockTable>
+  </apex:pageBlock>
+ </apex:form>
+</apex:page>

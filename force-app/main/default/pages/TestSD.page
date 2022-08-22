@@ -1,0 +1,30 @@
+<apex:page controller="Page22" sidebar="true"> 
+ <apex:form >
+    <script>
+  
+   function OpenVfpage(){
+              
+         window.open('/apex/TestSD2',"myaccounts","menubar=0, toolbar=1, resizable=0, width=900, height=900");
+    }
+</script>
+    
+    <h1>New Components</h1> 
+    
+    <apex:pageBlock title="A Block Title">
+        <apex:pageBlockSection title="A Section Title">
+            I'm three components deep!
+        </apex:pageBlockSection>
+        
+        <apex:pageBlockSection title="A New Section">
+            This is another section.
+        </apex:pageBlockSection>       
+        
+
+    </apex:pageBlock>
+    
+    <apex:commandButton value="New Book" id="btn1" onclick="return OpenVfpage()"/>
+     &nbsp;
+     <apex:commandButton value="New Account" action="{!redirect}"/>
+     
+</apex:form>
+</apex:page>

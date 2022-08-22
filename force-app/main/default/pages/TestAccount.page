@@ -1,0 +1,21 @@
+<!-- Page: -->
+<apex:page standardController="Partner_Lead__c" extensions="OpenActivitiesController" tabstyle="Partner_Lead__c">
+    <apex:pageBlock title="Partner Lead"/>
+    <apex:dataList value="{!leads}" var="olead">
+        <b>Partner Lead Name:</b>&nbsp;&nbsp; <apex:outputText value="{!olead.Name}"/><br/>
+        <b>Lead Name:</b>&nbsp;&nbsp;<apex:outputText value="{!olead.Lead_Name__c}"/><br/>
+        <b>Phone:</b>&nbsp;&nbsp;<apex:outputText value="{!olead.Phone__c}"/><br/>
+        <b>CreatedByID:</b>&nbsp;&nbsp;<apex:outputText value="{!olead.CreatedById}"/>
+        <br/>
+        <br/>
+    </apex:dataList>
+    <apex:pageBlock title="Open Activities"/>
+    <apex:dataList value="{!tasks}" var="otask">
+        <b>Subject:</b>&nbsp;&nbsp; <apex:outputText value="{!otask.Subject}"/><br/>
+        <b>Description:</b>&nbsp;&nbsp;<apex:outputText value="{!otask.Description}"/><br/>
+        <b>Status:</b>&nbsp;&nbsp;<apex:outputText value="{!otask.Status}"/><br/>
+        <b>CreatedByID:</b>&nbsp;&nbsp;<apex:outputText value="{!otask.CreatedByID}"/>
+        <br/>
+        <br/>
+    </apex:dataList>
+</apex:page>

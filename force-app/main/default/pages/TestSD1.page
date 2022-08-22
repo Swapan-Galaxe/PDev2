@@ -1,0 +1,35 @@
+<apex:page controller="NewAndExistingController" tabstyle="Account">
+   
+   <script>
+   
+   function cd()
+   {
+    alert("{!$Setup.C__c.A__c}");
+   }
+   </script>
+    
+    <apex:repeat value="{!Account}" var="a">
+        <c:newRelatedList myObject1="{!a.Name}"/>
+    </apex:repeat>
+    
+    <apex:form >
+    <apex:pageMessage severity="info" 
+   strength="1" 
+   summary="{$Setup.QueryString__c.A__c}"  />
+   
+        <apex:pageBlock mode="edit">
+            <apex:pageMessages />
+            <apex:pageBlockSection >
+                <apex:inputField value="{!Account.name}"/>
+                <apex:inputField value="{!Account.phone}"/>
+                <apex:inputField value="{!Account.industry}"/>
+                 <apex:inputField value="{!Account.Fax}"/>
+                 <apex:inputField value="{!Account.Website}"/>
+            </apex:pageBlockSection>
+            <apex:pageBlockButtons location="bottom">
+                <apex:commandButton value="Save" action="{!save}"/>
+                   <apex:commandButton value="xcvx" onclick="cd();return false;"/>
+            </apex:pageBlockButtons>
+        </apex:pageBlock>
+    </apex:form>
+</apex:page>

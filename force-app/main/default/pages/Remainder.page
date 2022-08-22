@@ -1,0 +1,39 @@
+<apex:page standardController="Account" extensions="Remainder">
+  <!-- Begin Default Content REMOVE THIS -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+
+   
+  <script type="text/javascript">
+  j$ = jQuery.noConflict();
+  function checked(a) {
+     if(j$(a).is(":checked"))
+     { 
+       
+       j$("[id$='txtdate']").prop('disabled', false);
+       j$("[id$='chooseTime']").prop('disabled', false);
+     }
+     else
+     { 
+      j$("[id$='txtdate']").prop('disabled', true);
+       j$("[id$='chooseTime']").prop('disabled', true);
+      
+     }
+     
+     
+    }
+  </script>
+  <apex:form >
+  <apex:pageBlock > 
+  <apex:pageBlockSection title="Reminder" collapsible="false" columns="3"  >
+  <apex:inputCheckbox onclick="window.checked(this)" id="shp" />
+ <!--<apex:inputCheckbox onclick="window.checked(this)" id="shp" value="{!Rstatus}"  />-->
+         <apex:inputText label=""  id="txtdate"  
+       onclick="DatePicker.pickDate(false, this , false);" disabled="true" />
+  
+ <apex:selectList id="chooseTime" value="{!s}" size="1"  disabled="true" >
+ <apex:selectOptions value="{!ReminderTimeList}"/>
+ </apex:selectList>
+ </apex:pageBlockSection>
+ </apex:pageBlock>
+ </apex:form>
+</apex:page>

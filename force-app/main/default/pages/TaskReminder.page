@@ -1,0 +1,52 @@
+<apex:page standardController="Task" extensions="BookController" tabstyle="Task" docType="html-5.0">
+
+ <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> 
+ 
+    <script type="text/javascript">
+           j$ = jQuery.noConflict();
+    function checked(a) {
+     if(j$(a).is(":checked"))
+     { 
+       
+       j$("[id$='newreminderdate']").prop('disabled', false);
+       j$("[id$='cmbtimelist1']").prop('disabled', false);
+     }
+     else
+     { 
+      j$("[id$='newreminderdate']").prop('disabled', true);
+       j$("[id$='cmbtimelist1']").prop('disabled', true);
+      
+     }
+     
+     
+    }
+    
+    </script>
+
+     <apex:form >
+        <apex:pageBlock >
+         
+         <apex:pageBlockButtons >
+        <apex:commandButton value="mnbm" action="{!newsubmit}" />
+        </apex:pageBlockButtons> 
+       
+        <apex:pageBlockSection columns="3">
+      
+       <apex:inputCheckbox value="{!task.IsReminderSet}" id="chkreminder" onclick="window.checked(this)"/>
+        
+       <apex:inputText label=""  id="newreminderdate" value="{!RemainderDate}"  
+       onclick="DatePicker.pickDate(false, this , false);" disabled="true" />
+       
+       
+       
+       <apex:selectList size="1" disabled="true"  id="cmbtimelist1" value="{!filterBusinessUnitControl}">
+         <apex:selectOptions value="{!ReminderTimeList}"/>        
+       </apex:selectList> 
+         
+          <apex:outputText value="{!RemainderDate}"/>
+         <apex:outputText value="{!filterBusinessUnitControl}"/>
+            
+        </apex:pageBlockSection>
+     </apex:pageBlock>
+    </apex:form>
+</apex:page>

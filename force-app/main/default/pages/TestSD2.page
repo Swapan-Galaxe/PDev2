@@ -1,0 +1,40 @@
+<apex:page standardController="Book__c" extensions="BookController,NextStep" tabstyle="Book__c">
+    <c:Comp1 record="Book__c"/>
+      <script type="text/javascript">
+      function func() {
+        var value = document.getElementById('{!$Component.BookName__c}').value;
+          alert('{!$Component.form.BookName__c}');
+        if( value=='') {
+          window.alert("Please enter the Book Name");
+          return false;  
+        }
+      }
+    </script>
+<apex:messages />
+        <apex:form >
+        <apex:pageBlock >
+        <apex:pageBlockButtons >
+        <apex:commandButton value="Save" action="{!submit}" onclick="func();return false;"/>
+         <apex:commandButton value="Save and New" action="{!submit}"/>
+        <apex:commandButton value="Cancel" action="{!cancel}" />
+        </apex:pageBlockButtons>
+        <apex:pageBlockSection > 
+            
+        <apex:inputField value="{!Book__c.BookName__c}"/>
+       
+        <apex:inputField value="{!Book__c.Publish_Date__c}"/>
+            
+        <apex:selectList value="{!Book__c.Publishing_houses__c}" multiselect="true">
+          <apex:selectOptions value="{!NextStepOptions}"/>        
+        </apex:selectList>
+        
+         <apex:selectList value="{!Book__c.Publishing_houses__c}" size="1" id="values">
+          <apex:selectOptions value="{!ReminderTimeList}"/>        
+        </apex:selectList>
+            
+            <apex:inputField showDatePicker="true" styleClass="slds-input" id="duedate" value="{!Book__c.Publish_Date__c}"/>
+            
+        </apex:pageBlockSection>
+    </apex:pageBlock>
+    </apex:form>
+</apex:page>

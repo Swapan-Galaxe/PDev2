@@ -1,0 +1,46 @@
+<apex:page standardController="Partner_Lead__c" extensions="OpenActivitiesController" tabstyle="Partner_Lead__c">
+ <apex:form id="form">
+     <apex:pageBlock title="Open Activities">
+      <apex:pageBlockTable value="{!tasks}" var="task"> 
+        
+         <apex:column headerValue="Action">
+        
+             <apex:outputLink value="https://ap4.salesforce.com/{!task.Id}/e?retURL=%2F{!task.Partner_Lead__c}"
+               Target="_blank" id="theLink">Edit</apex:outputLink> &nbsp;|&nbsp;
+               
+             <a href="javascript:if (window.confirm('Are you sure?')) DeleteTask('{!task.Id}');">Del</a> &nbsp;|&nbsp;          
+                
+             <apex:outputLink value="https://ap4.salesforce.com/00T/e?what_id={!task.whatId}&retURL=%2F{!task.whatId}"
+               Target="_blank" id="thetaskwhat" style="{!IF(( task.WhoId== null), '', 'display:none')}">New Task</apex:outputLink>
+     
+             <apex:outputLink value="https://ap4.salesforce.com/00T/e?who_id={!task.whoId}&retURL=%2F{!task.whoId}"                
+                style="{!IF(( task.WhatId== null), '', 'display:none')}" Target="_blank" id="thetaskwho">New Task</apex:outputLink> &nbsp;|&nbsp;
+                   
+             <apex:outputLink value="https://ap4.salesforce.com/00U/e?what_id={!task.whatId}&retURL=%2F{!task.whatId}"
+                   Target="_blank" id="theeventwhat" style="{!IF(( task.WhoId== null), '', 'display:none')}">New Event</apex:outputLink>             
+                    
+             <apex:outputLink value="https://ap4.salesforce.com/00U/e?who_id={!task.whoId}&retURL=%2F{!task.whoId}"                
+                style="{!IF(( task.WhatId== null), '', 'display:none')}" Target="_blank" id="theeventwho">New Event</apex:outputLink>
+            
+          </apex:column> 
+        
+         
+          <apex:column headerValue="ID">
+              <apex:outputLink value="{!task.Id}">{!task.Id}</apex:outputLink>
+          </apex:column>           
+          <apex:column value="{!task.Subject}" headerValue="Subject"/>             
+          <apex:column value="{!task.Description}" headerValue="Description"/>        
+          <apex:column value="{!task.CreatedByID }" headerValue="CreatedByID "/>
+          <apex:column value="{!task.Status}" headerValue="Status"/>
+          <apex:column value="{!task.WhatId}" headerValue="WhatId"/>             
+         <apex:column value="{!task.WhoId }" headerValue="WhoId "/>
+         
+      </apex:pageBlockTable>
+   </apex:pageBlock>
+   
+    <apex:actionFunction action="{!DeleteTask}" name="DeleteTask" reRender="form" >
+        <apex:param name="taskid" value="" assignTo="{!SelectedTaskId}"/>
+    </apex:actionFunction>
+    
+   </apex:form>
+ </apex:page>

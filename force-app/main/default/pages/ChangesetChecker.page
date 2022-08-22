@@ -1,0 +1,90 @@
+<apex:page controller="ChangesetCheckerController">
+
+<head>
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+</head>
+<html>
+<h3> Enter Change Set URL below</h3>
+<div id="paraContainer" style="display:none">
+    <p id="para">
+        Checking on the changeset. Please wait...
+    </p>
+</div>
+<form>
+    <input id="urlInput" />
+    <input id="submitbtn" type="button" value="Check Now" />
+</form>
+<script type="text/javascript">
+    $("#submitbtn").click(function() {
+        $("#paraContainer").css("display", "inline");
+        checkChg();
+    });
+
+    function checkChg() 
+    {
+        var newURL = $("#urlInput").val();
+        try 
+        {
+            Visualforce.remoting.Manager.invokeAction
+            (
+                '{!$RemoteAction.ChangesetCheckerController.checkChg}',
+                newURL,
+                function(result, event) 
+                {
+                    var foundin = '';
+                    if (event.status)
+                    {
+                        console.log('success');
+                        console.log(result);
+                        $("#para").html(result);
+                        foundin = $('p:contains("Change Set Unavailable")');
+                        if (result == '') 
+                        {
+                            check();
+                        }
+                        else if (foundin.length == 0) 
+                        {
+                            foundin = $('p:contains("PackageUnavailableException")');
+                            if (foundin.length == 0) 
+                            {
+                                 $("#para").empty();
+                                alert('Change Set Ready');
+                                window.open(newURL, "_blank");
+                            } 
+                            else 
+                            {
+                               check();
+                            }
+                        }
+                    } 
+                    else if (event.type === 'exception') 
+                    {
+                        console.log(event.message + " " + event.where);
+                    } 
+                    else 
+                    {
+                        console.log(event.message);
+                    }
+                }, 
+                {
+                    escape: true
+                }
+            );
+        } 
+        catch (err) 
+        {
+           check();
+        }
+    }
+    function check()
+    {
+        $("#para").text("Will check in 2 seconds again.. waiting..");
+        setTimeout(function() { 
+            $("#para").text("Checking on the changeset. Please wait...");
+            checkChg();
+        }, 2000);
+    }
+</script>
+
+</html>
+</apex:page>

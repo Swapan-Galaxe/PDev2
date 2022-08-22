@@ -1,0 +1,5 @@
+<apex:page standardcontroller="Book__c" extensions="MyController">
+    <apex:pageBlock title="Retrieving Query String Parameters">
+        You are viewing the {!objBook.BookName__c}.
+    </apex:pageBlock>
+</apex:page>

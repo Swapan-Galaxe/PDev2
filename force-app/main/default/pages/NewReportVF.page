@@ -1,0 +1,106 @@
+<apex:page controller="VfPageForExportReportController">
+<script type="text/javascript">
+    getRemoteReports();
+    function getRemoteReports() {        
+        Visualforce.remoting.Manager.invokeAction(
+            '{!$RemoteAction.VfPageForExportReportController.getReports}', 
+            function(result, event){
+                if (event.status) {
+                    // Get DOM IDs for HTML and Visualforce elements like this
+                    // get reference to select element
+                    var sel = document.getElementById('reports');
+                    for(var obj in result){
+						if(result[obj].Id != undefined){
+                            console.log(JSON.stringify(result[obj]));
+                            // create new option element
+                            var opt = document.createElement('option');
+                            
+                            // create text node to add to option element (opt)
+                            opt.appendChild( document.createTextNode(result[obj].Name) );
+                            
+                            // set value property of opt
+                            opt.value = result[obj].Id; 
+                            
+                            // add opt to end of select box (sel)
+                            sel.appendChild(opt); 
+						}
+                    }
+                } else if (event.type === 'exception') {
+                    document.getElementById("responseErrors").innerHTML = 
+                        event.message + "<br/>\n<pre>" + event.where + "</pre>";
+                } else {
+                    document.getElementById("responseErrors").innerHTML = event.message;
+                }
+            }, 
+            {escape: true}
+        );
+    }
+	function getRemoteCSV() {  
+		var reportId = document.getElementById('reports').value;
+        console.log(reportId);      
+		Visualforce.remoting.Manager.invokeAction(
+            '{!$RemoteAction.VfPageForExportReportController.getRemoteCSV}',
+			reportId,
+            function(result, event){
+                debugger;
+                if (event.status) {
+                    // Get DOM IDs for HTML and Visualforce elements like this
+                    //console.log(result.replace(/&quot;/g,''));
+                    alert(result);
+                    downloadCSV(result);
+                } else if (event.type === 'exception') {
+                    document.getElementById("responseErrors").innerHTML = 
+                        event.message + "<br/>\n<pre>" + event.where + "</pre>";
+                } else {
+                    document.getElementById("responseErrors").innerHTML = event.message;
+                }
+            }, 
+            {escape: true}
+        );
+    }
+    function downloadCSV(csvStr) {
+        var parser = new DOMParser;
+                        var dom = parser.parseFromString(
+                            '<!doctype html><body>' + csvStr,
+                            'text/html');
+                        var decodedString = dom.body.textContent;
+        var hiddenElement = document.createElement('a');
+        // var reportname = getReportName();
+        alert(csvStr);
+        hiddenElement.href = 'data:text/csv;charset=utf-8,' + encodeURI(decodedString);
+        hiddenElement.target = '_blank';
+        hiddenElement.download = 'output.csv';   //reportname + '.csv'
+        hiddenElement.click();
+    }
+    
+    function getReportName() {  
+		var reportId = document.getElementById('reports').value;
+        
+		Visualforce.remoting.Manager.invokeAction(
+            '{!$RemoteAction.VfPageForExportReportController.getReportName}',
+			reportId,
+            function(result, event){
+                if (event.status) {
+                    // Get DOM IDs for HTML and Visualforce elements like this
+                    //console.log(result.replace(/&quot;/g,''));                   
+                } else if (event.type === 'exception') {
+                    document.getElementById("responseErrors").innerHTML = 
+                        event.message + "<br/>\n<pre>" + event.where + "</pre>";
+                } else {
+                    document.getElementById("responseErrors").innerHTML = event.message;
+                }
+            }, 
+            {escape: true}
+        );
+    }
+    </script>
+    
+    
+    <div id="responseErrors"></div>
+    
+    <label for="reports">Choose a Report:</label>
+    
+    <select id="reports">
+    </select>
+	<button onclick="getRemoteCSV()">Export</button>
+</apex:page>

@@ -1,0 +1,51 @@
+<aura:component >
+	<div aria-labelledby="newexpenseform" id="newexpenseform">
+    <!-- CREATE NEW EXPENSE FORM -->
+    <br></br>
+    <form class="slds-form--inline">
+        <div class="slds-form-element slds-is-required">
+            <div class="slds-form-element__control">
+                <ui:inputSelect aura:id="accIndustry" class="slds-select">
+                    <ui:inputSelectOption text="Single Family" label="Single Family" />
+                    <ui:inputSelectOption text="Condominium" label="Condominium" />
+                    <ui:inputSelectOption text="Townhouse" label="Townhouse" />
+                    <ui:inputSelectOption text="Co-operative" label="Co-operative" />
+                </ui:inputSelect>
+            </div>
+
+        </div>
+
+        <div class="slds-form-element slds-is-required">
+            <div class="slds-form-element__control">
+                <!--<ui:inputSelect aura:id="levels3"  class="slds-input">
+                    <aura:iteration items="{!v.contactLevel1}" var="level">
+                        <ui:inputSelectOption text="{!level}" label="{!level}"/>
+                    </aura:iteration></ui:inputSelect>-->
+                    <ui:inputSelect aura:id="accIndustry1" class="slds-select">
+                        <ui:inputSelectOption text="Alabama" label="Alabama" />
+                        <ui:inputSelectOption text="California" label="California" />
+                        <ui:inputSelectOption text="New York" label="New York" />
+                        <ui:inputSelectOption text="Michigan" label="Michigan" />                
+                </ui:inputSelect>
+            </div>
+        </div>
+
+        <div class="slds-form-element">
+            <div class="slds-form-element__control" >
+                <ui:inputText aura:id="inputValue"
+                              class="slds-input"
+                              labelClass="slds-form-element__label"
+                              value="aa"
+                              />
+                <input type="text" name="firstname" id="inputValue1"></input>
+            </div>
+        </div>
+        
+        <div class="slds-form-element">
+        	<lightning:button label="Create Button" onclick="{!c.showPressedButtonLabel}" variant="brand"/>
+        </div>
+        
+    </form>
+    <!-- / CREATE NEW EXPENSE FORM -->
+</div>
+</aura:component>

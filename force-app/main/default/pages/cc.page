@@ -1,0 +1,156 @@
+<apex:page standardStylesheets="false">
+  
+
+ 
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Client Central | Home</title>
+    
+    <link REL="SHORTCUT ICON" HREF="{!URLFOR($Resource.favi)}" /> 
+         ..... 
+    <meta name='viewport' content='width=device-width, initial-scale=1.0, user-scalable=0' />
+    
+
+   
+   <apex:stylesheet value="{!$Resource.ThirdParty}"/>
+     <apex:stylesheet value="{!$Resource.PreLogin}"/>
+    <apex:stylesheet value="{!$Resource.Framework}"/>
+     <apex:stylesheet value="{!$Resource.ClientCentral}"/>
+   <apex:includeScript value="{!$Resource.MordenizerJS}"/>
+     
+    
+    
+</head>
+<body>
+    <div class="blue-bar clearfix"></div>
+      <header class="">
+        <div class="section row clearfix">
+            <div id="search-button" class="needsclick hide" data-collapse="#search" data-collapse-options="autofocus" data-icon="search"></div>
+            <div id="menu-button" data-collapse="#navigation" data-icon="reorder"></div>
+            <div class="column six  mobile-hide tablet-hide">
+                <img id="ihr-logo" src="{!$Resource.logo}" />
+            </div>
+
+            <div class="column six">
+                <div class="column twelve">
+                    <div id="account-controls" class="clear-both right account-controls">
+                        <a href="login.html" id="sign-in-out-link" data-icon-left="signin">Sign In</a>
+                    </div>
+                </div>
+                <div class="column twelve">
+
+                </div>
+            </div>
+
+        </div>
+    </header>
+    <nav class="clearfix ">
+        <div class="nav-wrapper">
+            <ul id="navigation">
+                <li class="nav-active">
+                    <a href="Home.html">Home</a>
+                </li>
+                <li class="">
+                    <a href="OurNetwork.html">Our Network</a>
+                </li>
+                <li class="">
+                    <a href="Membership.html">Membership</a>
+                </li>
+                <li class="hidden-desktop" id="mobile-user-controls">
+                    <a href="login.html" data-icon-left="signin">Sign In</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <section id="cc-body" class="wrapper clearfix">
+        <!--********************************************************************************************
+        Copyright (c) 2014 In-House Realty Inc.  All Rights Reserved.
+        Trade Secret, Confidential and Proprietary.  Unauthorized Dissemination Strictly Prohibited.
+        ********************************************************************************************/-->
+
+        <div id="join-page" class="">
+            <div class="mobile-full tablet-full">
+                <h2>In-House Realty is the Preferred Real Estate Partner of Quicken Loans</h2>
+                <p class="bold italic">We are your direct connection to thousands of Quicken Loans pre-approved buyers and sellers nationwide!</p>
+                <a href="OurNetwork.html" class="learn-more-button inline-block" data-icon-right="continue-arrow">Learn More</a>
+            </div>
+        </div>
+
+
+    </section>
+    <div id="pre-login-footer">
+        <div id="login-sub-footer-top">
+            <a href="AgentEnrollment.html" class="our-network-sub-section prelogin-button" title="Join the In-House Realty Network today by creating your account in Client Central!">
+                <div class="sub-section-text hidden-phone hidden-tablet">
+                    <span class="text-header">Become a Network Partner!</span>
+                    Join the In-House Realty Network today and get access to our industry leading systems and tools!
+                </div>
+                <div class="spacer hidden-phone hidden-tablet"></div>
+                <div class="sub-section-action">
+                    <div class="action-icon" data-icon="join-network"></div>
+                    <span class="transparent-button" data-icon-right="continue-arrow">Join Our Network</span>
+                </div>
+            </a>
+            <a href="ReferAnAgent.html" class="membership-sub-section prelogin-button" title="Refer a great agent to join the In-House Realty Network today by submitting their contact information!">
+                <div class="sub-section-action">
+                    <div class="action-icon" data-icon="refer-agent"></div>
+                    <span class="transparent-button" data-icon-right="continue-arrow">Refer an Agent Today</span>
+                </div>
+                <div class="spacer hidden-phone hidden-tablet"></div>
+                <div class="sub-section-text hidden-phone hidden-tablet">
+                    <span class="text-header">Refer a Great Agent!</span>
+                    Refer a high quality agent to join the In-House Realty Network by submitting their contact information today!
+                </div>
+            </a>
+        </div>
+        <a href="login.html" id="login-sub-section" title="Log In to Client Central">
+            <span class="italic">Already a Member of Our Network?</span>
+            <div>
+                <span id="cc-sub-logo" data-icon="ClientCentral">
+                    <i class="icon-ClientCentral"></i>
+                </span>
+            </div>
+            <span class="transparent-button" data-icon-right="continue-arrow">Log In Now</span>
+        </a>
+    </div>
+    <footer>
+        <div class="wrapper clearfix" style="height 1px !important">
+            <div class="column six mobile-full">
+                <h5 data-icon-left="link"> Links »</h5>
+                <span><a href="http://www.inhouserealty.com/" target="_blank">In-House&nbsp;Realty&nbsp;</a></span>
+                    <br/>
+                <span><a href="http://www.quickenloans.com" target="_blank">Quicken&nbsp;Loans&nbsp;</a></span>
+                    <br/>
+                <span><a href="http://www.titlesource.com" target="_blank">Title&nbsp;Source</a></span>
+                    <br/>
+                <span><a href="http://www.inhouserealty.com/terms-and-conditions" target="_blank">Terms&nbsp;and&nbsp;Conditions</a></span>
+            </div>
+            <div class="column six mobile-full">
+                <h5 data-icon-left="question-sign"> Questions&nbsp;or&nbsp;Feedback »</h5>
+                Call: <a href="tel:8005496122">(800) 549-6122</a>
+                <br />
+                Email: <a href="mailto:clientcentralfeedback@inhouserealty.com" target="_blank">clientcentralfeedback@inhouserealty.com</a>
+            </div>
+            
+
+            <div id="admin-footer-wrapper">
+                <div id="admin-footer" class="">
+                    <div class="clear-both right account-controls">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="layout-is-desktop" class="hidden-desktop"></div>
+        <div id="layout-is-tablet" class="hidden-tablet"></div>
+        <div id="layout-is-mobile" class="hidden-phone"></div>
+    </footer>
+    
+    <apex:includeScript value="{!$Resource.ThirdPartyJS}"/>
+    <apex:includeScript value="{!$Resource.FrameworkJS}"/>
+    <apex:includeScript value="{!$Resource.ClientCentralJS}"/>
+     
+</body>
+</html>
+
+</apex:page>
