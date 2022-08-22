@@ -1,7 +1,7 @@
 public class AccountTableController {
     
     //To return initial account records
-    //new comment 5
+    //new comment 5 34
     @AuraEnabled
     public static AccountWrapper getAccountRecords(Integer initialRows){
         AccountWrapper accountWrapper= new AccountWrapper();
