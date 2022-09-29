@@ -1,0 +1,72 @@
+# Starter pipeline
+# Start with a minimal pipeline that you can customize to build and deploy your code.
+# Add steps that build, run tests, deploy, and more:
+# https://aka.ms/yaml
+
+pr:
+  autoCancel: "true"
+  branches:
+    include:
+      - master
+  paths:
+   include:
+     - force-app/**
+   exclude:
+      - README.md
+      - azure-pipelines.yml
+   
+pool:
+  vmImage: ubuntu-latest
+
+variables:
+ $:
+ group: sfdx-org-prod
+  
+
+steps:
+- task: UseNode@1
+  displayName: 'Use Node.js 16.15.0'
+  inputs:
+        version: '16.15.0'
+- bash:
+    npm install sfdx-cli --global
+  displayName: 'Install Salesforce CLI'
+  
+- task: DownloadSecureFile@1
+  name: jwtKey
+  displayName: 'Download Server JWT Key'
+  inputs:
+       secureFile: 'server.key'
+
+- bash: 
+    sfdx -v
+  displayName: 'Checking SFDX Version'
+
+- bash:     
+    export SFDX_AUDIENCE_URL=https://test.salesforce.com
+  displayName: 'Running Audience URL'
+
+- bash: 
+    #sfdx force:auth:web:login -a prodenv -r https://test.salesforce.com
+    #sfdx force:auth:jwt:grant -i $(Clientid) -f $(jwtKey.secureFilePath) -u $(SalesforceUserName) -r $(InstanceUrl) -a prodenv
+  displayName: 'Authorize salesforce org'
+
+- bash: 
+      #sfdx force:source:convert -x manifest/package.xml -d ./toDeploy
+  displayName: 'Convert source into Metadata API format'
+  
+- bash: 
+      #sfdx force:mdapi:deploy -l RunLocalTests -c -d ./toDeploy -u prodenv -w 10
+  displayName: 'Run Validation on Deploy Source'
+  
+- bash: 
+    # sfdx force:mdapi:deploy -l RunLocalTests -d ./toDeploy -u prodenv -w 10
+  displayName: 'Deploy source code to Salesforce Org'
+
+#- bash: 
+       #sfdx force:source:deploy -l RunLocalTests -c -x manifest/package.xml -u prodenv -w 10
+  #displayName: 'Run Validation on source code'
+  
+#- bash: 
+       #sfdx force:source:deploy -l RunLocalTests -x manifest/package.xml -u prodenv -w 10
+  #displayName: 'Deploy source code to Salesforce Org'
