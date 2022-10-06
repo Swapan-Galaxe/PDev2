@@ -1,0 +1,25 @@
+
+<!-- helloBinding.html -->
+<template>
+    <p>Hello, {greeting}!</p>
+    <lightning-input label="Name" value={greeting} onchange={handleChange}></lightning-input>
+
+    <template for:each={contacts} for:item="contact"> //where contacts is an array
+        <li key={contact.Id}>
+            {contact.Name}, {contact.Title}
+        </li>
+    </template>
+
+    <template iterator:it={contacts}>
+        <li key={it.value.Id}>
+            <div if:true={it.first} class="list-first"></div>
+            {it.value.Name}, {it.value.Title}
+            <div if:true={it.last} class="list-last"></div>
+        </li>
+    </template>
+
+
+    <c-Comp1 item-name="Milk"></c-Comp1>
+    <c-Comp1 item-name="Bread"></c-Comp1>
+
+</template>

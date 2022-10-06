@@ -1,0 +1,42 @@
+<template>
+    <lightning-card>
+        <h3 slot="title">
+            <lightning-icon icon-name="utility:connected_apps" size="small"></lightning-icon>
+            Display Dynamic sObject in Lightning Web Components
+        </h3>
+        <div slot="footer">
+                
+        </div>
+            <table class="slds-table slds-table_bordered slds-table_cell-buffer slds-table_col-bordered slds-table_striped">
+                <thead>
+                    <tr class="slds-text-title_caps">
+                        
+                        <th scope="col">
+                            <div title="Key">Record Id</div>
+                        </th>
+                        <th scope="col">
+                            <div title="Value">Record Name</div>
+                        </th>
+                        <th scope="col">
+                            <div title="Value">Owner Name</div>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <template for:each={dySobject} for:item="sobKey">
+                        <tr key={sobKey.key}>
+                            <th scope="col">
+                                <c-lwcs-object key={sobKey.key} sobject={sobKey.value} field-name="Id"></c-lwcs-object>
+                            </th>
+                            <th scope="col">
+                                <c-lwcs-object key={sobKey.key} sobject={sobKey.value} field-name="Name"></c-lwcs-object>
+                            </th>
+                            <th scope="col">
+                                <c-lwcs-object key={sobKey.key} sobject={sobKey.value} field-name="Owner.Name"></c-lwcs-object>
+                            </th>
+                        </tr>
+                    </template>
+                </tbody>
+            </table>
+    </lightning-card>
+</template>
