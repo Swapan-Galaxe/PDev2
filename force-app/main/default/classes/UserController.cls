@@ -54,7 +54,16 @@ public String selectedCountry{get;set;}
     public void setCountries(String[] countries) {
         this.countries = countries;
     
+        
 
-}       
+}
+
+
+@AuraEnabled(cacheable=true)
+public static List<Contact> getContactList() {
+   List<Contact> lstContacts = [Select id, name, title, email, phone from contact limit 10];
+
+    return lstContacts;
+}
 
 }
