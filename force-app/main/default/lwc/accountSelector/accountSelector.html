@@ -1,0 +1,11 @@
+<template>
+    <div style="height: 300px;">
+        <lightning-datatable
+                key-field="id"
+                max-row-selection="1"
+                data={contacts}
+                columns={columns}
+                onrowselection={handleRowSelection}>
+        </lightning-datatable>
+    </div>    
+</template>
