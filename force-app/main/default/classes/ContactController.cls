@@ -8,4 +8,24 @@ public with sharing class ContactController {
             LIMIT 1
         ];
     }
+
+    @AuraEnabled(cacheable=true)
+    public static List<Contact> getContacts(String accId) {
+        return [
+            SELECT AccountId, Id, FirstName, LastName, Title, Phone, Email
+            FROM Contact
+            WHERE AccountId = :accId
+            WITH SECURITY_ENFORCED
+        ];
+    }
+
+@AuraEnabled(cacheable=true)
+public static string getContentVersion(Id docId){
+    return [
+        SELECT Id, IsLatest, Title, ContentDocumentId 
+        FROM ContentVersion 
+        WHERE ContentDocumentId=:docId AND isLatest=true
+        LIMIT 1
+    ].Id;
+}
 }

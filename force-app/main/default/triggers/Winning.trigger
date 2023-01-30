@@ -9,3 +9,32 @@ trigger Winning on Opportunity (before update) {
     }
   }
 }
+
+trigger accoppocount on account(after insert, after update)
+{
+  set<id> accids = new set<id>();
+  for(account ac : trigger.new)
+  {
+      accids.add(ac.id);
+  }
+
+  List<Opportunity> opps  = new List<Opportunity>();
+  List<Opportunity> lstoppold = trigger.oldmap;
+
+  List<AggregateResult> oppsaggre = [select id, name, sum(totalAmountofRelatedOpp) totamount from Opportunity where id in :accids];
+
+
+  for (Opportunity opp : Trigger.new) {
+
+    Opportunity oldOpp = Trigger.oldMap.get(opp.Id);
+    if(oldOpp.StageName != 'Closed Won' && opp.StageName == 'Closed Won')
+    {
+      opp.totalRecords += opp.totalRecords
+      opps.add(opp);
+    }
+  }
+  if(opps.size() > 0)
+  {
+    update opps
+  }
+}
